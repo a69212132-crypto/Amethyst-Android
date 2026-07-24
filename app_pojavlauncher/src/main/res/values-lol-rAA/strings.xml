@@ -27,7 +27,7 @@
     <!-- MCLauncherActivity: Strings -->
     <string name="mcl_launch_cleancache">Cleanin cache filez</string>
     <string name="mcl_launch_downloading">Downloadin %s</string>
-    <string name="mcl_launch_downloading_progress">"Downloadin %s (%.2f MB / %.2f MB)"</string>
+    <string name="mcl_launch_downloading_progress">"Downloadin %1$s (%2$.2f MB / %3$.2f MB)"</string>
     <string name="mcl_launch_download_assets">Preparin 2 download resourcez</string>
     <string name="mcl_options">Opshuns</string>
     <string name="mcl_setting_title_use_surface_view">USE ALTERNATE SURFACE RENDERIN</string>
@@ -35,7 +35,7 @@
     <string name="mcl_setting_title_ignore_notch">Ignoer notch</string>
     <string name="mcl_setting_subtitle_ignore_notch">Ignores da notch an extends da screen under it.\nGives yu a more immersive experience.</string>
     <string name="mcl_setting_title_resolution_scaler">Resolushun Scalah</string>
-    <string name="mcl_setting_subtitle_resolution_scaler">Allows yu to decrease da game resolution. 100% is full resolution.</string>
+    <string name="mcl_setting_subtitle_resolution_scaler">Allows yu to decrease da game resolution. 100%%% is full resolution.</string>
     <string name="mcl_setting_title_longpresstrigger">Trigger long press delayz</string>
     <string name="mcl_setting_subtitle_longpresstrigger">Change long press trigger delay for destroying blockz an droppin\' itemz.</string>
     <string name="mcl_setting_title_buttonscale">Control buttons scalin</string>
@@ -107,7 +107,7 @@
     <string name="customctrl_passthru">Mouses pas-thur</string>
     <string name="customctrl_swipeable">Scratchable</string>
     <string name="customctrl_absolute_tracking">Absolute finger trackin\'</string>
-    <string name="memory_warning_msg">WURNING: Catz iz becomin’ une of teh Memory Muncherz, wich may leid tu game crash! (Free %d, munch’d %d MB) Change teh allocasion if teh game crashez.</string>
+    <string name="memory_warning_msg">WURNING: Catz iz becomin’ une of teh Memory Muncherz, wich may leid tu game crash! (Free %1$d, munch’d %2$d MB) Change teh allocasion if teh game crashez.</string>
     <string name="mcl_memory_allocation">RAM allocasion</string>
     <string name="mcl_memory_allocation_subtitle">Controlz how much memory is given to block game.</string>
     <string name="multirt_runtime_corrupt">Derti Coffee Cup</string>

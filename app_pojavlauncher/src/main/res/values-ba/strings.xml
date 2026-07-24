@@ -27,7 +27,7 @@
     <!-- MCLauncherActivity: Strings -->
     <string name="mcl_launch_cleancache">Кэш файлдарын таҙартыу</string>
     <string name="mcl_launch_downloading">Йөкләү %s</string>
-    <string name="mcl_launch_downloading_progress">"Йөкләү %s (%.2f МБ/%.2f МБ)"</string>
+    <string name="mcl_launch_downloading_progress">"Йөкләү %1$s (%2$.2f МБ/%3$.2f МБ)"</string>
     <string name="mcl_launch_download_assets">Ресурстарҙы йөкләүгә әҙерлек</string>
     <string name="mcl_options">Опциялар</string>
     <string name="mcl_setting_title_use_surface_view">Өҫкө йөҙҙөң альтернатив рендерын ҡулланығыҙ</string>
@@ -35,7 +35,7 @@
     <string name="mcl_setting_title_ignore_notch">Зазубринаны һанға һуҡмау</string>
     <string name="mcl_setting_subtitle_ignore_notch">Экранды уның аҫтына сығара.\nБыл һеҙгә тағы ла мауыҡтырғыс тәжрибә бирә.</string>
     <string name="mcl_setting_title_resolution_scaler">Резолюцияны арттырыу өсөн ҡоролма</string>
-    <string name="mcl_setting_subtitle_resolution_scaler">Уйындың рөхсәтен кәметергә мөмкинлек бирә. 100% - тулы резолюция.</string>
+    <string name="mcl_setting_subtitle_resolution_scaler">Уйындың рөхсәтен кәметергә мөмкинлек бирә. 100%%% - тулы резолюция.</string>
     <string name="mcl_setting_title_longpresstrigger">Асыу ырғағына баҫып тороуҙың оҙайлы тотҡарлығы</string>
     <string name="mcl_setting_subtitle_longpresstrigger">Блоктарҙы юҡ итеү һәм әйберҙәрҙең төшөүе өсөн оҙаҡ баҫҡанда эшләтеү тотҡарлығын үҙгәртегеҙ.</string>
     <string name="mcl_setting_title_buttonscale">Масштаблауҙы идара итеү төймәләре</string>

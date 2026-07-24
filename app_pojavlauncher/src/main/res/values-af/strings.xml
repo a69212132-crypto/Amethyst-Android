@@ -26,7 +26,7 @@
     <!-- MCLauncherActivity: Strings -->
     <string name="mcl_launch_cleancache">Cache-Dateien bereinigen</string>
     <string name="mcl_launch_downloading">Lade %s herunter</string>
-    <string name="mcl_launch_downloading_progress">"Lade %s herunter (%.2f MB / %.2f MB)"</string>
+    <string name="mcl_launch_downloading_progress">"Lade %1$s herunter (%2$.2f MB / %3$.2f MB)"</string>
     <string name="mcl_launch_download_assets">Bereite das Herunterladen der Ressourcen vor</string>
     <string name="mcl_options">Optionen</string>
     <string name="mcl_setting_title_use_surface_view">Verwende alternatives Oberflächen-Rendering</string>
@@ -34,7 +34,7 @@
     <string name="mcl_setting_title_ignore_notch">Ignoriere die Kameraeinkerbung</string>
     <string name="mcl_setting_subtitle_ignore_notch">Ignoriert die Kammeraeinkerbung im Bildschirm und erweitert den Bildschirm unter ihr.\nErmöglicht eine immersiveres Erlebniss.</string>
     <string name="mcl_setting_title_resolution_scaler">Auflösungsskalierer</string>
-    <string name="mcl_setting_subtitle_resolution_scaler">Ermöglicht das Verringern der Spielauflösung. 100% entspricht der vollen Auflösung.</string>
+    <string name="mcl_setting_subtitle_resolution_scaler">Ermöglicht das Verringern der Spielauflösung. 100%%% entspricht der vollen Auflösung.</string>
     <string name="mcl_setting_title_longpresstrigger">Verzögerung nach langem Drücken des Triggers</string>
     <string name="mcl_setting_subtitle_longpresstrigger">Verzögerung für langes drücken des Triggers für das Zerstören von Blöcken oder fallen lassen von Gegenständen ändern.</string>
     <string name="mcl_setting_title_buttonscale">Größe der Steuerelemente</string>
