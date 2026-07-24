@@ -1734,6 +1734,7 @@ public final class Tools {
         boolean deviceHasVulkan = checkVulkanSupport(context.getPackageManager());
         boolean deviceHasOSMesaZinkBinary = new File(Tools.NATIVE_LIB_DIR, "libOSMesa.so").exists();
         boolean deviceHasDesktopGlZinkBinary = new File(Tools.NATIVE_LIB_DIR, "libglxshim.so").exists();
+        boolean deviceHasMobileGluesBinary = new File(Tools.NATIVE_LIB_DIR, "libmobileglues.so").exists();
         boolean deviceHasOpenGLES3 = JREUtils.getDetectedVersion() >= 3;
         boolean appHasLtw = new File(Tools.NATIVE_LIB_DIR, "libltw.so").exists();
         List<String> rendererIds = new ArrayList<>(defaultRenderers.length);
@@ -1744,6 +1745,7 @@ public final class Tools {
             if(rendererRequiresVulkan && !deviceHasVulkan) continue;
             if("vulkan_zink".equals(rendererId) && !deviceHasOSMesaZinkBinary) continue;
             if("opengles3_desktopgl_zink_kopper".equals(rendererId) && !deviceHasDesktopGlZinkBinary) continue;
+            if("opengles_mobileglues".equals(rendererId) && !deviceHasMobileGluesBinary) continue;
             if(rendererId.contains("zink") && !("vulkan_zink".equals(rendererId) || "opengles3_desktopgl_zink_kopper".equals(rendererId))) continue;
             if(rendererId.contains("ltw") && (!deviceHasOpenGLES3 || !appHasLtw)) continue;
             rendererIds.add(rendererId);
