@@ -260,10 +260,29 @@ public class ProfileEditorFragment extends Fragment implements CropperUtils.Crop
         mTempProfile.javaDir = (selectedRuntime.name.equals("<Default>") || selectedRuntime.versionString == null)
                 ? null : Tools.LAUNCHERPROFILES_RTPREFIX + selectedRuntime.name;
 
-        if(mDefaultRenderer.getSelectedItemPosition() == mRenderNames.size()) mTempProfile.pojavRendererName = null;
-        else mTempProfile.pojavRendererName = mRenderNames.get(mDefaultRenderer.getSelectedItemPosition());
+        String selectedRenderer = null;
+        if(mDefaultRenderer.getSelectedItemPosition() != mRenderNames.size()) {
+            selectedRenderer = mRenderNames.get(mDefaultRenderer.getSelectedItemPosition());
+        }
 
+        if(selectedRenderer != null && !Tools.checkRendererCompatible(requireContext(), selectedRenderer)) {
+            new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.pedit_renderer_unsupported_title)
+                    .setMessage(getString(R.string.pedit_renderer_unsupported_save_warning, selectedRenderer))
+                    .setPositiveButton(R.string.global_save, (dialog, which) -> {
+                        mTempProfile.pojavRendererName = selectedRenderer;
+                        writeProfile();
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
+            return;
+        }
 
+        mTempProfile.pojavRendererName = selectedRenderer;
+        writeProfile();
+    }
+
+    private void writeProfile() {
         LauncherProfiles.mainProfileJson.profiles.put(mProfileKey, mTempProfile);
         LauncherProfiles.write();
         ExtraCore.setValue(ExtraConstants.REFRESH_VERSION_SPINNER, mProfileKey);

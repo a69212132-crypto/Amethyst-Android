@@ -240,6 +240,8 @@
     <string name="pedit_java_runtime">Java Runtime</string>
     <string name="pedit_renderer">Renderer</string>
     <string name="pedit_renderer_unsupported">Unsupported renderer: %s</string>
+    <string name="pedit_renderer_unsupported_title">Renderer compatibility warning</string>
+    <string name="pedit_renderer_unsupported_save_warning">The renderer '%1$s' is not compatible with this device. Save it anyway?</string>
     <string name="arc_capes_title">Cosmetica Capes</string>
     <string name="arc_capes_desc">Enables capes from Cosmetica (previously Arc). For more information please visit https://cosmetica.cc. Requires OptiFine.</string>
     <string name="color_default_hex" translatable="false">FFFF0000</string>
