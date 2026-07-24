@@ -1781,6 +1781,7 @@ public final class Tools {
                         int minor = Integer.parseInt(split[1]);
                         if(major == 1 && minor >= 17 && JREUtils.getDetectedVersion() >= 3) {
                             if(compatibleRenderers.contains("opengles_mobileglues")) return "opengles_mobileglues";
+                            if(compatibleRenderers.contains("opengles3_ltw")) return "opengles3_ltw";
                         }
                     } catch (NumberFormatException ignored) {
                         // Fall through to default renderer selection
