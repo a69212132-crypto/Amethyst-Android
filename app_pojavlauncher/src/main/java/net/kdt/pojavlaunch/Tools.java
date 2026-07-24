@@ -1792,7 +1792,7 @@ public final class Tools {
         }
 
         if(compatibleRenderers.contains("opengles2")) return "opengles2";
-        return compatibleRenderers.isEmpty() ? "opengles2" : compatibleRenderers.get(0);
+        return compatibleRenderers.isEmpty() ? null : compatibleRenderers.get(0);
     }
 
     /** Releases the cache of compatible renderers. */
