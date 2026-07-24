@@ -465,6 +465,7 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
             runOnUiThread(() -> Toast.makeText(this, R.string.autorendererselectfailed, Toast.LENGTH_LONG).show());
             Tools.releaseRenderersCache();
         }
+        Log.i("runCraft", "Selected renderer: " + Tools.LOCAL_RENDERER);
 
         // MCL-3732 Mitigation
         // I don't trust the bug tracker. 'server-resource-pack" was removed in 1.20.3-pre3
