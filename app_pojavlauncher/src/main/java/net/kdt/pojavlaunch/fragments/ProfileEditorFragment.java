@@ -164,9 +164,7 @@ public class ProfileEditorFragment extends Fragment implements CropperUtils.Crop
         if(mTempProfile == null){
             mTempProfile = getProfile(profile);
         }
-        // TODO: Remove this jank when it's not relevant anymore
-        // Shitty hack to make OSMZink smoothly transition into kopper
-        if ("vulkan_zink".equals(mTempProfile.pojavRendererName)) mTempProfile.pojavRendererName = "opengles3_desktopgl_zink_kopper";
+        // Preserve the user-selected renderer option and respect compatibility later.
         mProfileIcon.setImageDrawable(
                 ProfileIconCache.fetchIcon(getResources(), mProfileKey, mTempProfile.icon)
         );

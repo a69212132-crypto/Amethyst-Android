@@ -1732,17 +1732,16 @@ public final class Tools {
         String[] defaultRenderers = resources.getStringArray(R.array.renderer_values);
         String[] defaultRendererNames = resources.getStringArray(R.array.renderer);
         boolean deviceHasVulkan = checkVulkanSupport(context.getPackageManager());
-        // Zink is now also optional because it sucks
         boolean deviceHasOSMesaZinkBinary = new File(Tools.NATIVE_LIB_DIR, "libOSMesa.so").exists();
         boolean deviceHasOpenGLES3 = JREUtils.getDetectedVersion() >= 3;
-        // LTW is an optional proprietary dependency
         boolean appHasLtw = new File(Tools.NATIVE_LIB_DIR, "libltw.so").exists();
         List<String> rendererIds = new ArrayList<>(defaultRenderers.length);
         List<String> rendererNames = new ArrayList<>(defaultRendererNames.length);
         for(int i = 0; i < defaultRenderers.length; i++) {
             String rendererId = defaultRenderers[i];
-            if(rendererId.contains("vulkan") && !deviceHasVulkan) continue;
-            if(rendererId.contains("vulkan_zink") && !deviceHasOSMesaZinkBinary) continue;
+            boolean rendererRequiresVulkan = rendererId.contains("vulkan") || rendererId.contains("zink");
+            if(rendererRequiresVulkan && !deviceHasVulkan) continue;
+            if(rendererId.contains("zink") && !deviceHasOSMesaZinkBinary) continue;
             if(rendererId.contains("ltw") && (!deviceHasOpenGLES3 || !appHasLtw)) continue;
             rendererIds.add(rendererId);
             rendererNames.add(defaultRendererNames[i]);
@@ -1755,7 +1754,38 @@ public final class Tools {
 
     /** Checks if the renderer Id is compatible with the current device */
     public static boolean checkRendererCompatible(Context context, String rendererName) {
-         return getCompatibleRenderers(context).rendererIds.contains(rendererName);
+         return rendererName != null && getCompatibleRenderers(context).rendererIds.contains(rendererName);
+    }
+
+    public static String getPreferredRenderer(Context context, JMinecraftVersionList.Version version, MinecraftProfile profile) {
+        if(profile != null && profile.pojavRendererName != null) {
+            String requestedRenderer = profile.pojavRendererName;
+            if(checkRendererCompatible(context, requestedRenderer)) {
+                return requestedRenderer;
+            }
+        }
+
+        if(version != null) {
+            String versionId = version.id;
+            if(versionId != null && versionId.startsWith("1.")) {
+                String[] split = versionId.split("\\.");
+                if(split.length >= 2) {
+                    try {
+                        int major = Integer.parseInt(split[0]);
+                        int minor = Integer.parseInt(split[1]);
+                        if(major == 1 && minor >= 17 && JREUtils.getDetectedVersion() >= 3) {
+                            List<String> compatible = getCompatibleRenderers(context).rendererIds;
+                            if(compatible.contains("opengles_mobileglues")) return "opengles_mobileglues";
+                        }
+                    } catch (NumberFormatException ignored) {
+                        // Fall through to default renderer selection
+                    }
+                }
+            }
+        }
+
+        List<String> compatibleRenderers = getCompatibleRenderers(context).rendererIds;
+        return compatibleRenderers.isEmpty() ? null : compatibleRenderers.get(0);
     }
 
     /** Releases the cache of compatible renderers. */

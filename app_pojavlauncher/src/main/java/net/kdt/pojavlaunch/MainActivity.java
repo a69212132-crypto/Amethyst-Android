@@ -233,9 +233,6 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
             if(minecraftProfile.pojavRendererName != null) {
                 Log.i("RdrDebug","__P_renderer="+minecraftProfile.pojavRendererName);
                 Tools.LOCAL_RENDERER = minecraftProfile.pojavRendererName;
-                // TODO: Remove this jank when it's not relevant anymore
-                // Shitty hack to make OSMZink smoothly transition into kopper
-                if (minecraftProfile.pojavRendererName.equals("vulkan_zink")) Tools.LOCAL_RENDERER = "opengles3_desktopgl_zink_kopper";
             }
 
             setTitle("Minecraft " + minecraftProfile.lastVersionId);
@@ -453,18 +450,7 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
         // FIXME: Automatic detection should be based on provided hint GLFW_CONTEXT_VERSION_MAJOR and GLFW_CONTEXT_VERSION_MINOR
         // Autoselect renderer
         if (Tools.LOCAL_RENDERER == null) {
-            // Preferably we could detect when it is modded and swap to zink however that would also
-            // cover optifine and vanilla+ configurations which are relatively common, degrading their
-            // experience for no reason. We will compromise with just having users do it themselves.
-            Tools.LOCAL_RENDERER = "opengles2";
-            // MobileGlues becomes available post 1.17. It has superior compatibility with mods
-            // while having fairly similar performance compared to GL4ES-based forks.
-            if(assetVersion.matches("\\d+") || // Should match all digits, which is the modern assetVersioning
-               "1.17".equals(assetVersion) ||
-               "1.18".equals(assetVersion) ||
-               "1.19".equals(assetVersion) ||
-                // Angelica gives us GL3.3core on 1.7.10, it's a unique case.
-                hasMods("angelica")) Tools.LOCAL_RENDERER = "opengles_mobileglues";
+            Tools.LOCAL_RENDERER = Tools.getPreferredRenderer(this, version, minecraftProfile);
         }
         if(!Tools.checkRendererCompatible(this, Tools.LOCAL_RENDERER)) {
             Tools.RenderersList renderersList = Tools.getCompatibleRenderers(this);
