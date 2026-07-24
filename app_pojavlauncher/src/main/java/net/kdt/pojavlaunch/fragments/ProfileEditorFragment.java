@@ -83,9 +83,13 @@ public class ProfileEditorFragment extends Fragment implements CropperUtils.Crop
         bindViews(view);
 
         Tools.RenderersList renderersList = Tools.getCompatibleRenderers(view.getContext());
-        mRenderNames = renderersList.rendererIds;
+        mRenderNames = new ArrayList<>(renderersList.rendererIds);
         List<String> renderList = new ArrayList<>(renderersList.rendererDisplayNames.length + 1);
         renderList.addAll(Arrays.asList(renderersList.rendererDisplayNames));
+        if (mTempProfile != null && mTempProfile.pojavRendererName != null && !mRenderNames.contains(mTempProfile.pojavRendererName)) {
+            mRenderNames.add(mTempProfile.pojavRendererName);
+            renderList.add(view.getContext().getString(R.string.pedit_renderer_unsupported, mTempProfile.pojavRendererName));
+        }
         renderList.add(view.getContext().getString(R.string.global_default));
         mDefaultRenderer.setAdapter(new ArrayAdapter<>(getContext(), R.layout.item_simple_list_1, renderList));
 
