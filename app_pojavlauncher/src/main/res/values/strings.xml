@@ -242,7 +242,7 @@
     <string name="pedit_renderer_unsupported">Unsupported renderer: %s</string>
     <string name="pedit_renderer_unsupported_title">Renderer compatibility warning</string>
     <string name="bind_process_waiting_joystick">Move the %1$s joystick to the %2$s</string>
-    <string name="pedit_renderer_unsupported_save_warning">The renderer '%1$s' is not compatible with this device. Save it anyway?</string>
+    <string name="pedit_renderer_unsupported_save_warning">The renderer %1$s is not compatible with this device. Save it anyway?</string>
     <string name="arc_capes_title">Cosmetica Capes</string>
     <string name="arc_capes_desc">Enables capes from Cosmetica (previously Arc). For more information please visit https://cosmetica.cc. Requires OptiFine.</string>
     <string name="color_default_hex" translatable="false">FFFF0000</string>
