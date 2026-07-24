@@ -612,13 +612,23 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
                 return;
             }
             ClipData.Item firstClipItem = clipData.getItemAt(0);
-            //TODO: coerce to HTML if the clip item is styled
-            CharSequence clipItemText = firstClipItem.getText();
-            if(clipItemText == null) {
+            if (firstClipItem == null) {
                 AWTInputBridge.nativeClipboardReceived(null, null);
                 return;
             }
-            AWTInputBridge.nativeClipboardReceived(clipItemText.toString(), "plain");
+
+            String htmlText = firstClipItem.getHtmlText();
+            if (htmlText != null) {
+                AWTInputBridge.nativeClipboardReceived(htmlText, "text/html");
+                return;
+            }
+
+            CharSequence clipItemText = firstClipItem.getText();
+            if (clipItemText == null) {
+                AWTInputBridge.nativeClipboardReceived(null, null);
+                return;
+            }
+            AWTInputBridge.nativeClipboardReceived(clipItemText.toString(), "text/plain");
         });
     }
 
