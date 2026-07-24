@@ -1769,6 +1769,7 @@ public final class Tools {
             if(checkRendererCompatible(context, requestedRenderer)) {
                 return requestedRenderer;
             }
+            Log.w("Tools", "Requested renderer '" + requestedRenderer + "' is not compatible with this device. Falling back to preferred renderer.");
         }
 
         if(version != null) {
