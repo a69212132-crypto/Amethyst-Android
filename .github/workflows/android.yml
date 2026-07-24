@@ -70,9 +70,9 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
         with:
-          validate-wrappers: false
-          gradle-version: "8.11"
-          cache-cleanup: disabled
+           validate-wrappers: false
+           gradle-version: "8.11"
+           cache-cleanup: never
 
       - name: Verify Gradle installation
         run: gradle --version
