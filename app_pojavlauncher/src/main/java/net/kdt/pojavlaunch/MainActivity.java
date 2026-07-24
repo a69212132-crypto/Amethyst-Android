@@ -452,11 +452,16 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
         if (Tools.LOCAL_RENDERER == null) {
             Tools.LOCAL_RENDERER = Tools.getPreferredRenderer(this, version, minecraftProfile);
         }
+        Tools.RenderersList renderersList = Tools.getCompatibleRenderers(this);
         if(!Tools.checkRendererCompatible(this, Tools.LOCAL_RENDERER)) {
-            Tools.RenderersList renderersList = Tools.getCompatibleRenderers(this);
-            String firstCompatibleRenderer = renderersList.rendererIds.get(0);
-            Log.w("runCraft","Incompatible renderer "+Tools.LOCAL_RENDERER+ " will be replaced with "+firstCompatibleRenderer);
-            Tools.LOCAL_RENDERER = firstCompatibleRenderer;
+            if (renderersList.rendererIds.isEmpty()) {
+                Log.e("runCraft", "No compatible renderers available. Falling back to opengles2.");
+                Tools.LOCAL_RENDERER = "opengles2";
+            } else {
+                String firstCompatibleRenderer = renderersList.rendererIds.get(0);
+                Log.w("runCraft","Incompatible renderer "+Tools.LOCAL_RENDERER+ " will be replaced with "+firstCompatibleRenderer);
+                Tools.LOCAL_RENDERER = firstCompatibleRenderer;
+            }
             runOnUiThread(() -> Toast.makeText(this, R.string.autorendererselectfailed, Toast.LENGTH_LONG).show());
             Tools.releaseRenderersCache();
         }

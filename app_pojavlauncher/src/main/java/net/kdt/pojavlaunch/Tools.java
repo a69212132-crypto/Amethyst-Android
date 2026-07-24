@@ -1758,6 +1758,7 @@ public final class Tools {
     }
 
     public static String getPreferredRenderer(Context context, JMinecraftVersionList.Version version, MinecraftProfile profile) {
+        List<String> compatibleRenderers = getCompatibleRenderers(context).rendererIds;
         if(profile != null && profile.pojavRendererName != null) {
             String requestedRenderer = profile.pojavRendererName;
             if(checkRendererCompatible(context, requestedRenderer)) {
@@ -1774,8 +1775,7 @@ public final class Tools {
                         int major = Integer.parseInt(split[0]);
                         int minor = Integer.parseInt(split[1]);
                         if(major == 1 && minor >= 17 && JREUtils.getDetectedVersion() >= 3) {
-                            List<String> compatible = getCompatibleRenderers(context).rendererIds;
-                            if(compatible.contains("opengles_mobileglues")) return "opengles_mobileglues";
+                            if(compatibleRenderers.contains("opengles_mobileglues")) return "opengles_mobileglues";
                         }
                     } catch (NumberFormatException ignored) {
                         // Fall through to default renderer selection
@@ -1784,8 +1784,8 @@ public final class Tools {
             }
         }
 
-        List<String> compatibleRenderers = getCompatibleRenderers(context).rendererIds;
-        return compatibleRenderers.isEmpty() ? null : compatibleRenderers.get(0);
+        if(compatibleRenderers.contains("opengles2")) return "opengles2";
+        return compatibleRenderers.isEmpty() ? "opengles2" : compatibleRenderers.get(0);
     }
 
     /** Releases the cache of compatible renderers. */
