@@ -12,7 +12,7 @@ def getVersionName = {
     ByteArrayOutputStream TAG_PART_COMMIT = new ByteArrayOutputStream()
     String TAG_STRING
 
-    exec {
+    project.exec {
         try {
             commandLine 'git', 'describe', '--tags'
             ignoreExitValue true
@@ -23,7 +23,7 @@ def getVersionName = {
     }
 
     if (TAG.toString() == "") {
-        exec {
+        project.exec {
             // Fallback for action builds
             try {
                 commandLine 'git', 'describe', '--always', '--tags'
