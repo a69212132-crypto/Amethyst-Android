@@ -260,9 +260,11 @@ public class ProfileEditorFragment extends Fragment implements CropperUtils.Crop
         mTempProfile.javaDir = (selectedRuntime.name.equals("<Default>") || selectedRuntime.versionString == null)
                 ? null : Tools.LAUNCHERPROFILES_RTPREFIX + selectedRuntime.name;
 
-        String selectedRenderer = null;
+        final String selectedRenderer;
         if(mDefaultRenderer.getSelectedItemPosition() != mRenderNames.size()) {
             selectedRenderer = mRenderNames.get(mDefaultRenderer.getSelectedItemPosition());
+        } else {
+            selectedRenderer = null;
         }
 
         if(selectedRenderer != null && !Tools.checkRendererCompatible(requireContext(), selectedRenderer)) {
