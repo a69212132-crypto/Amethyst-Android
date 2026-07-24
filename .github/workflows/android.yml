@@ -68,14 +68,14 @@ jobs:
       #     branch: Build_JRE_25
       #     name: jre25-multiarch
 
-- uses: gradle/actions/setup-gradle@v4
-  with:
-    validate-wrappers: false
-    gradle-version: "8.11"
-    cache-cleanup: disabled
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          validate-wrappers: false
+          gradle-version: "8.11"
+          cache-cleanup: disabled
 
-- name: Verify Gradle installation
-  run: gradle --version
+      - name: Verify Gradle installation
+        run: gradle --version
 
       - name: Run scripts
         run: |
